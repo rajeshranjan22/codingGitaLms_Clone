@@ -1,6 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function AssignmentsCard({ assignments, pending }) {
+  const navigate = useNavigate();
+
+  const handleViewAll = () => {
+    navigate("/student/assignments");
+  };
+
   return (
     <div className="rounded-xl border border-neutral-800 bg-neutral-900 mb-6">
       {/* HEADER */}
@@ -16,9 +23,12 @@ export default function AssignmentsCard({ assignments, pending }) {
           <div className="flex items-center gap-3 text-sm text-neutral-400">
             <span>Pending: {pending}</span>
 
-            <span className="text-xs underline hover:text-white cursor-pointer">
+            <button
+              onClick={handleViewAll}
+              className="text-xs underline hover:text-white"
+            >
               View all
-            </span>
+            </button>
           </div>
         </div>
       </div>

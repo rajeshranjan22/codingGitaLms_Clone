@@ -9,8 +9,11 @@ import MentorsCard from "../components/MentorsCard";
 import AssignmentsCard from "../components/AssignmentsCard";
 import EventsCard from "../components/EventsCard";
 import SmallCard from "../components/SmallCard";
+import { useNavigate } from "react-router-dom";
 
 export default function StudentDashboard() {
+  const navigate = useNavigate();
+
   const data = localStorage.getItem("user");
   const user = data ? JSON.parse(data) : null;
 
@@ -29,7 +32,7 @@ export default function StudentDashboard() {
         </div>
 
         {/* ATTENDANCE */}
-        <AttendanceCard attendance={user.attendance} />
+        <AttendanceCard attendance={user.attendance[1]} />
 
         {/* PROFILE + SUBJECTS */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -55,7 +58,12 @@ export default function StudentDashboard() {
 
           <SmallCard title="Timetable" text="Check classes (coming soon)" />
 
-          <SmallCard title="Chat" text="View Chat Groups" link />
+          <SmallCard
+            onClick={() => navigate("/student/chat")}
+            title="Chat"
+            text="View Chat Groups"
+            link
+          />
         </div>
       </div>
     </div>
